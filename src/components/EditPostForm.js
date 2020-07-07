@@ -3,11 +3,11 @@ import ReusableForm from "./ReusableForm";
 import PropTypes from "prop-types";
 
 function EditPostForm (props) {
-  const { ticket } = props;
+  const { post } = props;
 
   function handleEditPostFormSubmission(event) {
     event.preventDefault();
-    props.onEditPost({title: event.target.title.value, content: event.target.content.value, author: event.target.author.value, timestamp: event.target.timestamp.value, id: ticket.id });
+    props.onEditPost({title: event.target.title.value, content: event.target.content.value, author: event.target.author.value, timestamp: event.target.timestamp.value, id: post.id });
   }
 
   return (
@@ -19,8 +19,8 @@ function EditPostForm (props) {
   );
 } 
 
-EditTicketForm.propTypes = {
-  onEditTicket: PropTypes.func
+EditPostForm.propTypes = {
+  onEditPost: PropTypes.func
 };
 
-export default EditTicketForm;
+export default EditPostForm;

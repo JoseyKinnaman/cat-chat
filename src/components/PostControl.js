@@ -87,17 +87,45 @@ class PostControl extends React.Component {
 
 
   render() {
+    let currentlyVisibleState = null;
+    let buttonText = null;
+    if (this.state.editing){
+      currentlyVisibleState = <EditPostForm post = {this.state.selectedPost} onEditPost= {this.handleEditPostInList}/>
+      buttonText = "Return to Message Board"
+    } else if (this.state.selectedPost != null){
+      currentlyVisibleState =
+      <PostDetail
+        post = {this.state.selectedPost}
+        onClickingDelete = {this.handleDeletePost}
+        onClickingEdit = {this.handleEditClick}
+        />
+      buttonText = "Return to Message Board"
+    }
+    else if (this.props.formVisibleOnPage){
+      currentlyVisibleState = <NewPostForm onNewPostCreation={this.handleAddingNewPostToList}/>
+      buttonText = "Return to Message Board"
+    } else {
+      currentlyVisibleState = <PostList postList = {this.props.masterPostList} onPostSelection={this.handleChangingSelectedPost}/>
+      buttonText = "Add Post"
+    }
+    return(
+      <React.Fragment>
+        {currentlyVisibleState}
+        <button class="btn btn-dark" onClick={this.handleClick}>{buttonText}</button>
+      </React.Fragment>
+
+    );
     
   }
 }
 
 PostControl.propTypes = {
-  masterPropList: PropTypes.object
+  masterPostList: PropTypes.object
 };
 
 const mapStateToProps = state => {
   return {
-    masterPropList: state.masterPropList,
+    masterPostList: state.masterPostList,
     formVisibleOnPage: state.formVisibleOnPage
   }
 }
