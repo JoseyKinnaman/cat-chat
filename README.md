@@ -1,4 +1,4 @@
-# **Cat Chats**
+# **Cat Chat**
 
 ## Author: **Jozy Kinnaman && Jason Macie**
 ### July 7th, 2020
@@ -7,7 +7,7 @@
 
 _Cat Chat is the perfect place to sit down, relax, and share pictures of your cat._
 
-<!-- ![Wireframe](src/img/tap-room.jpg) -->
+![diagram](public/diagram.drawio.png)
 
 ### Instructions for use:
 
