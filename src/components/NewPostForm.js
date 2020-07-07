@@ -6,8 +6,8 @@ import ReusableForm from "./ReusableForm";
 function NewPostForm(props){
   function handleNewPostFormSubmission(event) {
     event.preventDefault();
-    var dateTime = Date.now();
-    props.onNewPostCreation({title: event.target.title.value, content: event.target.content.value, author: event.target.author.value, timestamp: Date(dateTime), id: v4()});
+    // var dateTime = Date.now();
+    props.onNewPostCreation({title: event.target.title.value, content: event.target.content.value, author: event.target.author.value, timestamp: event.target.timestamp.value, id: v4()});
   }
 
   return (

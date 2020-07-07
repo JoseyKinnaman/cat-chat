@@ -2,10 +2,9 @@ import React from "react";
 import PropTypes from "prop-types"
 
 function ReusableForm(props) {
-
   return(
     <React.Fragment>
-      <form onSubmit={handleNewKombuchaFormSubmission} >
+      <form onSubmit={props.formSubmissionHandler}>
         <div class="form-group">
           <input
             type="text"
@@ -28,12 +27,13 @@ function ReusableForm(props) {
             required />
         </div>
         <div class="form-group">
+          <label for="staticTs">Date: </label>
           <input
             type="text"
             readonly
             id="staticTs"
             name="timestamp"
-            value="7/07/1977 22:00"/>
+            value="07/07/1977 22:00"/>
         </div>
         <div class="form-group">
           <button class="btn btn-dark" type='submit'>Submit Form </button>
@@ -43,7 +43,7 @@ function ReusableForm(props) {
   );
 }
 
-ReusableForm.PropTypes = {
+ReusableForm.propTypes = {
   formSubmissionHandler: PropTypes.func,
   buttonText: PropTypes.string
 };

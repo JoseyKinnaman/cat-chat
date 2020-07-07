@@ -24,7 +24,7 @@ class PostControl extends React.Component {
         selectedPost: null,
         editing: false
       });
-    } else{
+    } else {
       const { dispatch } = this.props;
       const action = {
         type: 'TOGGLE_FORM'
@@ -34,13 +34,13 @@ class PostControl extends React.Component {
   }
 
   handleChangingSelectedPost = (id) => {
-    const selectedPost = this.props.masterPropList[id];
+    const selectedPost = this.props.masterPostList[id];
     this.setState({selectedPost: selectedPost})
   }
   
   handleAddingNewPostToList = (newPost) => {
     const { dispatch } = this.props;
-    const { id, content, author, timestamp } = newPost;
+    const { id, title, content, author, timestamp } = newPost;
     const action = {
       type: 'ADD_POST',
       id: id,
@@ -49,6 +49,7 @@ class PostControl extends React.Component {
       author: author,
       timestamp: timestamp,
     }
+    console.log(timestamp);
     dispatch(action);
     const action2 = {
       type: 'TOGGLE_FORM'
@@ -62,7 +63,7 @@ class PostControl extends React.Component {
 
   handleEditPostInList = (postToEdit) => {
     const { dispatch } = this.props;
-    const { id, content, author, timestamp } = postToEdit;
+    const { id, title, content, author, timestamp } = postToEdit;
     const action = {
       type: 'ADD_ITEM',
       id: id,
@@ -85,7 +86,6 @@ class PostControl extends React.Component {
     this.setState({ selectedPost: null });
   }
 
-
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
@@ -96,8 +96,8 @@ class PostControl extends React.Component {
       currentlyVisibleState =
       <PostDetail
         post = {this.state.selectedPost}
-        onClickingDelete = {this.handleDeletePost}
-        onClickingEdit = {this.handleEditClick}
+        onClickDelete = {this.handleDeletePost}
+        onClickEdit = {this.handleEditClick}
         />
       buttonText = "Return to Message Board"
     }
@@ -105,7 +105,7 @@ class PostControl extends React.Component {
       currentlyVisibleState = <NewPostForm onNewPostCreation={this.handleAddingNewPostToList}/>
       buttonText = "Return to Message Board"
     } else {
-      currentlyVisibleState = <PostList postList = {this.props.masterPostList} onPostSelection={this.handleChangingSelectedPost}/>
+      currentlyVisibleState = <PostList postList = {this.props.masterPostList} onPostSelection={this.handleChangingSelectedPost}/>;
       buttonText = "Add Post"
     }
     return(
@@ -115,7 +115,6 @@ class PostControl extends React.Component {
       </React.Fragment>
 
     );
-    
   }
 }
 
@@ -130,5 +129,6 @@ const mapStateToProps = state => {
   }
 }
 
-PostControl = connect(mapStateToProp)(PostControl);
+PostControl = connect(mapStateToProps)(PostControl);
 export default PostControl;
+
