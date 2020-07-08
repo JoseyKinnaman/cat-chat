@@ -8,7 +8,7 @@ function App(){
     <React.Fragment>
       <div class="container">
         <Header />
-        <PostControl />
+        <PostControl/>
       </div>
     </React.Fragment>
   );

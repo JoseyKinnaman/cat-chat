@@ -2,15 +2,25 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function Post(props){
+  const newPostFormStyles = {
+    backgroundColor: 'grey', //#000000
+    border: 'solid 1pt grey',
+    textAlign: "center",
+    borderRadius: "8px",
+    marginBottom: "20px",
+  }
   return (
     <React.Fragment>
-      <div onClick = {() => props.whenPostClicked(props.id)}>
-      <h3>{props.title}</h3>
-        <hr />
-      <p>{props.content}</p>
-      <p><em>{props.author}</em></p>
-      <p>{props.timestamp}</p>
+      <div class="row">
+        <div style={newPostFormStyles}  class="col-md-6">
+        <h3>Topic: {props.title}</h3>
+        <h4>Writen by: {props.author}</h4>
+          <div class="form-group">
+            <button class="btn btn-info" onClick={() => props.whenPostClicked(props.id)}> View Post</button>
+          </div>
       </div>
+      </div>
+      
     </React.Fragment>
   );
 }
@@ -21,9 +31,9 @@ Post.propTypes = {
   author: PropTypes.string.isRequired,
   timestamp: PropTypes.string,
   id: PropTypes.string,
-  whenPostClicked: PropTypes.func
+  whenPostClicked: PropTypes.func,
 };
 
-console.log(Post.PropTypes)
+console.log(Post.propTypes)
 
 export default Post;

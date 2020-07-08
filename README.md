@@ -58,6 +58,11 @@ _Please contact jozypants@gmail.com or macjay314@gmail.com with questions._
 | **As a user, I want to downvote posts I don't like, or find inappropriate.** | User Input: "User clicks + button" | Output: Likes: 2, Dislikes: 1  |
 | **As a user, I'd like posts with the most upvotes to appear higher on the page.** | User Input: localhost:3000 | Output: Top Posts |
 
+<!-- add comments ?-->
+<!-- add post likes or dislikes -->
+<!-- format timestamp id css-->
+<!-- posts flow into colomns and rows -->
+
 #### Production to do:
 
 New Post submission doesn't add a post to the list.

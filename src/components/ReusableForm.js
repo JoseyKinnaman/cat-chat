@@ -13,8 +13,7 @@ function ReusableForm(props) {
             required />
         </div>
         <div class="form-group">
-          <input
-            type="text"
+          <textarea
             name='content'
             placeholder='Post'
             required />

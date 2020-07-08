@@ -10,7 +10,6 @@ class PostControl extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       selectedPost: null,
       editing: false
@@ -35,7 +34,7 @@ class PostControl extends React.Component {
 
   handleChangingSelectedPost = (id) => {
     const selectedPost = this.props.masterPostList[id];
-    this.setState({selectedPost: selectedPost})
+    this.setState({selectedPost: selectedPost});
   }
   
   handleAddingNewPostToList = (newPost) => {
@@ -105,13 +104,15 @@ class PostControl extends React.Component {
       currentlyVisibleState = <NewPostForm onNewPostCreation={this.handleAddingNewPostToList}/>
       buttonText = "Return to Message Board"
     } else {
-      currentlyVisibleState = <PostList postList = {this.props.masterPostList} onPostSelection={this.handleChangingSelectedPost}/>;
+      currentlyVisibleState = <PostList postList = {this.props.masterPostList} onPostSelection={this.handleChangingSelectedPost}/>
       buttonText = "Add Post"
     }
     return(
       <React.Fragment>
         {currentlyVisibleState}
-        <button class="btn btn-dark" onClick={this.handleClick}>{buttonText}</button>
+        <div class="form-group">
+          <button class="btn btn-dark" onClick={this.handleClick}>{buttonText}</button>
+        </div>
       </React.Fragment>
 
     );
@@ -121,6 +122,8 @@ class PostControl extends React.Component {
 PostControl.propTypes = {
   masterPostList: PropTypes.object
 };
+
+console.log(PostControl.propTypes)
 
 const mapStateToProps = state => {
   return {

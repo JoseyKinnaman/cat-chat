@@ -8,7 +8,8 @@ export default (state = {}, action) => {
         title: title,
         content: content,
         author: author,
-        timestamp: timestamp
+        timestamp: timestamp,
+        id: id
       }
     });
     case 'DELETE_POST':

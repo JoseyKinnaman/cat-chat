@@ -4,6 +4,14 @@ import PropTypes from "prop-types";
 
 function EditPostForm (props) {
   const { post } = props;
+  const EditFormStyles = {
+    backgroundColor: 'grey', //#000000
+    border: 'solid 1pt grey',
+    textAlign: "center",
+    borderRadius: "8px",
+    marginBottom: "20px",
+    padding: '15px'
+  }
 
   function handleEditPostFormSubmission(event) {
     event.preventDefault();
@@ -12,9 +20,12 @@ function EditPostForm (props) {
 
   return (
     <React.Fragment>
-      <ReusableForm
-      formSubmissionHandler={handleEditPostFormSubmission}
-      buttonText="Update Post" />
+      <div style={EditFormStyles}>
+        <h2> Update your post.</h2>
+        <ReusableForm
+        formSubmissionHandler={handleEditPostFormSubmission}
+        buttonText="Update Post" />
+      </div>
     </React.Fragment>
   );
 } 

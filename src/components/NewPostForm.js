@@ -4,6 +4,13 @@ import PropTypes from "prop-types";
 import ReusableForm from "./ReusableForm";
 
 function NewPostForm(props){
+  const newPostFormStyles = {
+      backgroundColor: 'grey', //#000000
+      border: 'solid 1pt grey',
+      textAlign: "center",
+      borderRadius: "8px",
+      marginBottom: "20px",  
+    }
   function handleNewPostFormSubmission(event) {
     event.preventDefault();
     let seconds = Date.now();
@@ -13,9 +20,12 @@ function NewPostForm(props){
 
   return (
     <React.Fragment>
-      <ReusableForm 
-        formSubmissionHandler={handleNewPostFormSubmission}
-        buttonText="Create Post" />
+      <div style={newPostFormStyles}>
+        <h2> Submit a new post</h2>
+        <ReusableForm 
+          formSubmissionHandler={handleNewPostFormSubmission}
+          buttonText="Create Post" />
+      </div>
     </React.Fragment>
   );
 }
