@@ -21,12 +21,18 @@ export default (state = {}, action) => {
       
     case 'UP_VOTE':
       const newPost = {...state };
-      const postVote = newPost.filter((post)=>post.upVotes === id)[0];
-      const newUpVote = postVote.upVotes +1;
-      console.log(newUpVote);
-  
-      return;
-  
+      const postVote = newPost[id].upvotes +1
+      return Object.assign({}, state, {
+        [id]: {
+          title: title,
+          content: content,
+          author: author,
+          timestamp: timestamp,
+          upVotes: upVotes,
+          downVotes: downVotes,
+          id: id
+        }
+      });
     default:
       return state;
     }

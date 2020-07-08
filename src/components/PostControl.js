@@ -92,7 +92,7 @@ class PostControl extends React.Component {
   }
 
   handleThumbsUp = (id) =>{
-    const {dispatch } = this.props;
+    const { dispatch } = this.props;
     const action = {
       type: 'UP_VOTE',
       id: id
