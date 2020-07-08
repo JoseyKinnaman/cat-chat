@@ -16,6 +16,8 @@ function PostList(props){
           timestamp={post.timestamp}
           id={post.id}
           key={post.id}
+          upVotes={post.upVotes}
+          downVotes={post.downVotes}
         />
      })}
     </React.Fragment>

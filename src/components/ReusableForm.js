@@ -38,5 +38,4 @@ ReusableForm.propTypes = {
   buttonText: PropTypes.string
 };
 
-// add timestamp functionality
 export default ReusableForm;

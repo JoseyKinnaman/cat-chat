@@ -1,5 +1,5 @@
 import React from "react";
-import catDonut from "../img/cat-in-donut.jpg"
+// import catDonut from "../img/cat-in-donut.jpg"
 
 function Header() {
   const headerStyles = {

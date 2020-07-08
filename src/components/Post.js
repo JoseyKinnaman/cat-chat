@@ -31,6 +31,8 @@ Post.propTypes = {
   author: PropTypes.string.isRequired,
   timestamp: PropTypes.string,
   id: PropTypes.string,
+  upVotes: PropTypes.number,
+  downVotes: PropTypes.number,
   whenPostClicked: PropTypes.func,
 };
 

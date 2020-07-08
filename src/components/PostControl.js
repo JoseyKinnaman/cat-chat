@@ -12,7 +12,7 @@ class PostControl extends React.Component {
     super(props);
     this.state = {
       selectedPost: null,
-      editing: false
+      editing: false,
     };
   }
 
@@ -39,7 +39,7 @@ class PostControl extends React.Component {
   
   handleAddingNewPostToList = (newPost) => {
     const { dispatch } = this.props;
-    const { id, title, content, author, timestamp } = newPost;
+    const { id, title, content, author, timestamp, upVotes, downVotes } = newPost;
     const action = {
       type: 'ADD_POST',
       id: id,
@@ -47,8 +47,9 @@ class PostControl extends React.Component {
       content: content,
       author: author,
       timestamp: timestamp,
+      upVotes: upVotes,
+      downVotes: downVotes
     }
-    console.log(timestamp);
     dispatch(action);
     const action2 = {
       type: 'TOGGLE_FORM'
@@ -62,23 +63,38 @@ class PostControl extends React.Component {
 
   handleEditPostInList = (postToEdit) => {
     const { dispatch } = this.props;
-    const { id, title, content, author, timestamp } = postToEdit;
+    const { id, title, content, author, timestamp, upVotes, downVotes } = postToEdit;
     const action = {
-      type: 'ADD_ITEM',
+      type: 'ADD_POST',
       id: id,
       title: title,
       content: content,
       author: author,
       timestamp: timestamp,
+      upVotes: upVotes,
+      downVotes: downVotes
     }
-    dispatch(action)
-    this.setState({ selectedPost: null })
+    dispatch(action);
+    this.setState({ 
+      editing: false,
+      selectedPost: null 
+    });
   }
 
   handleDeletePost = (id) => {
     const { dispatch } = this.props;
     const action = {
-      type: "DELETE_POST",
+      type: 'DELETE_POST',
+      id: id
+    }
+    dispatch(action);
+    this.setState({ selectedPost: null });
+  }
+
+  handleThumbsUp = (id) =>{
+    const {dispatch } = this.props;
+    const action = {
+      type: 'UP_VOTE',
       id: id
     }
     dispatch(action);
@@ -97,6 +113,7 @@ class PostControl extends React.Component {
         post = {this.state.selectedPost}
         onClickDelete = {this.handleDeletePost}
         onClickEdit = {this.handleEditClick}
+        onClickThumbsUp = {this.handleThumbsUp}
         />
       buttonText = "Return to Message Board"
     }
@@ -106,6 +123,7 @@ class PostControl extends React.Component {
     } else {
       currentlyVisibleState = <PostList postList = {this.props.masterPostList} onPostSelection={this.handleChangingSelectedPost}/>
       buttonText = "Add Post"
+      
     }
     return(
       <React.Fragment>
@@ -114,16 +132,14 @@ class PostControl extends React.Component {
           <button class="btn btn-dark" onClick={this.handleClick}>{buttonText}</button>
         </div>
       </React.Fragment>
-
     );
   }
 }
 
 PostControl.propTypes = {
-  masterPostList: PropTypes.object
+  masterPostList: PropTypes.object,
+  formVisibleOnPage: PropTypes.bool
 };
-
-console.log(PostControl.propTypes)
 
 const mapStateToProps = state => {
   return {
@@ -134,4 +150,3 @@ const mapStateToProps = state => {
 
 PostControl = connect(mapStateToProps)(PostControl);
 export default PostControl;
-
