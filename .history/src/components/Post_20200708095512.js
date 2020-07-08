@@ -19,7 +19,7 @@ Post.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
-  timestamp: PropTypes.string,
+  timestamp: PropTypes.instanceOf(Date),
   id: PropTypes.string,
   whenPostClicked: PropTypes.func
 };

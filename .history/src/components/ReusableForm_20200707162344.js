@@ -27,6 +27,15 @@ function ReusableForm(props) {
             required />
         </div>
         <div class="form-group">
+          <label for="staticTs">Date: </label>
+          <input
+            type="text"
+            readonly
+            id="staticTs"
+            name="timestamp"
+            value="07/07/1977 22:00"/>
+        </div>
+        <div class="form-group">
           <button class="btn btn-dark" type='submit'>Submit Form </button>
         </div>
       </form>

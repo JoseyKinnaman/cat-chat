@@ -6,9 +6,13 @@ import ReusableForm from "./ReusableForm";
 function NewPostForm(props){
   function handleNewPostFormSubmission(event) {
     event.preventDefault();
-    let seconds = Date.now();
-    let date = new Date(seconds).toString();
-    props.onNewPostCreation({title: event.target.title.value, content: event.target.content.value, author: event.target.author.value, timestamp: date, id: v4()});
+    // let seconds = Date.now();
+    let date = new Date()
+    let day = date.getDate();
+    let month = date.getMonth();
+    let year = date.getFullYear();
+    let localTime = month + "/" + day + "/" + year;
+    props.onNewPostCreation({title: event.target.title.value, content: event.target.content.value, author: event.target.author.value, timestamp: localTime, id: v4()});
   }
 
   return (
