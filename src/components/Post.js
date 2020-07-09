@@ -15,6 +15,8 @@ function Post(props){
         <div style={newPostFormStyles}  class="col-md-6">
         <h3>Topic: {props.title}</h3>
         <h4>Writen by: {props.author}</h4>
+        <h5>Likes: {props.upVotes}</h5>
+        <h5>Dislikes: {props.downVotes} </h5>
           <div class="form-group">
             <button class="btn btn-info" onClick={() => props.whenPostClicked(props.id)}> View Post</button>
           </div>

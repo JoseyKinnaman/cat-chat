@@ -11,7 +11,7 @@ function PostDetail(props) {
     marginBottom: "20px",
   }
 
-  const { post, onClickDelete, onClickEdit, onClickThumbsUp, onClickThumbsDown, masterPostList } = props;
+  const { post, onClickDelete, onClickEdit, onClickVoteUp, onClickVoteDown, masterPostList } = props;
   const upVotes = masterPostList[post.id].upVotes;
   const downVotes = masterPostList[post.id].downVotes;
   return (
@@ -24,13 +24,13 @@ function PostDetail(props) {
         <h4>{post.content}</h4>
         <p><em>Written by: {post.author}</em></p>
         <p id="timestamp">{post.timestamp}</p>
-        <div>
-          <p>Likes: {upVotes}</p>
-            <button onClick={ ()=>onClickThumbsUp(post) } class="btn btn-success form-group">Thumbs up</button>
+        <div class="form-group">
+            <p>Likes: {upVotes}</p>
+            <button onClick={ ()=>onClickVoteUp(post) } class="btn btn-success form-group">Thumbs up</button>
         </div>
-        <div>
+        <div class="form-group">
           <p>Dislikes:  {downVotes}</p>
-            <button onClick={ ()=>onClickThumbsDown(post) } class="btn btn-light form-group">Thumbs down</button>
+            <button onClick={ ()=>onClickVoteDown(post) } class="btn btn-dark form-group">Thumbs down</button>
         </div>
         <div class="form-group">
           <button onClick={ ()=>onClickDelete(post.id) } class="btn btn-danger">Delete Post</button>
@@ -49,8 +49,8 @@ PostDetail.propTypes = {
   post: PropTypes.object,
   onClickDelete: PropTypes.func,
   onClickEdit: PropTypes.func,
-  onClickThumbsUp: PropTypes.func,
-  onClickThumbsDown: PropTypes.func
+  onClickVoteUp: PropTypes.func,
+  onClickVoteDown: PropTypes.func
 };
 
 const mapStateToProps = state => {
