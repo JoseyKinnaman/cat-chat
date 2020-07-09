@@ -91,14 +91,36 @@ class PostControl extends React.Component {
     this.setState({ selectedPost: null });
   }
 
-  handleThumbsUp = (id) =>{
+  handleVoteUp = (postToEdit) =>{
     const { dispatch } = this.props;
+    const { id, title, content, author, timestamp, upVotes, downVotes } = postToEdit;
     const action = {
       type: 'UP_VOTE',
-      id: id
+      id: id,
+      title: title,
+      content: content,
+      author: author,
+      timestamp: timestamp,
+      upVotes: upVotes,
+      downVotes: downVotes
     }
     dispatch(action);
-    this.setState({ selectedPost: null });
+  }
+
+  handleVoteDown = (postToEdit) =>{
+    const { dispatch } = this.props;
+    const { id, title, content, author, timestamp, upVotes, downVotes } = postToEdit;
+    const action = {
+      type: 'DOWN_VOTE',
+      id: id,
+      title: title,
+      content: content,
+      author: author,
+      timestamp: timestamp,
+      upVotes: upVotes,
+      downVotes: downVotes
+    }
+    dispatch(action);
   }
 
   render() {
@@ -113,7 +135,8 @@ class PostControl extends React.Component {
         post = {this.state.selectedPost}
         onClickDelete = {this.handleDeletePost}
         onClickEdit = {this.handleEditClick}
-        onClickThumbsUp = {this.handleThumbsUp}
+        onClickThumbsUp = {this.handleVoteUp}
+        onClickThumbsDown = {this.handleVoteDown}
         />
       buttonText = "Return to Message Board"
     }
@@ -122,8 +145,7 @@ class PostControl extends React.Component {
       buttonText = "Return to Message Board"
     } else {
       currentlyVisibleState = <PostList postList = {this.props.masterPostList} onPostSelection={this.handleChangingSelectedPost}/>
-      buttonText = "Add Post"
-      
+      buttonText = "Add Post"     
     }
     return(
       <React.Fragment>

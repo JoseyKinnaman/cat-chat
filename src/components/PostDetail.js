@@ -1,5 +1,6 @@
 import React from "react";
 import  PropTypes from "prop-types";
+import { connect } from 'react-redux';
 
 function PostDetail(props) {
   const PostDetailStyles = {
@@ -9,7 +10,10 @@ function PostDetail(props) {
     borderRadius: "8px",
     marginBottom: "20px",
   }
-  const { post, onClickDelete, onClickEdit, onClickThumbsUp, onClickThumbsDown } = props;
+
+  const { post, onClickDelete, onClickEdit, onClickThumbsUp, onClickThumbsDown, masterPostList } = props;
+  const upVotes = masterPostList[post.id].upVotes;
+  const downVotes = masterPostList[post.id].downVotes;
   return (
     <React.Fragment>
       <div class="row">
@@ -21,12 +25,12 @@ function PostDetail(props) {
         <p><em>Written by: {post.author}</em></p>
         <p id="timestamp">{post.timestamp}</p>
         <div>
-          <p>Likes: {post.upVotes}</p>
-            <button onClick={ ()=>onClickThumbsUp(post.id) } class="btn btn-success form-group">Thumbs up</button>
+          <p>Likes: {upVotes}</p>
+            <button onClick={ ()=>onClickThumbsUp(post) } class="btn btn-success form-group">Thumbs up</button>
         </div>
         <div>
-          <p>Dislikes:  {post.downVotes}</p>
-            <button onClick={ ()=>onClickThumbsDown(post.id) } class="btn btn-light form-group">Thumbs down</button>
+          <p>Dislikes:  {downVotes}</p>
+            <button onClick={ ()=>onClickThumbsDown(post) } class="btn btn-light form-group">Thumbs down</button>
         </div>
         <div class="form-group">
           <button onClick={ ()=>onClickDelete(post.id) } class="btn btn-danger">Delete Post</button>
@@ -40,6 +44,7 @@ function PostDetail(props) {
     </React.Fragment>
   )
 }
+
 PostDetail.propTypes = {
   post: PropTypes.object,
   onClickDelete: PropTypes.func,
@@ -48,4 +53,11 @@ PostDetail.propTypes = {
   onClickThumbsDown: PropTypes.func
 };
 
+const mapStateToProps = state => {
+  return {
+    masterPostList: state.masterPostList
+  }
+}
+
+PostDetail = connect(mapStateToProps)(PostDetail);
 export default PostDetail;

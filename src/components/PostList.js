@@ -7,7 +7,8 @@ function PostList(props){
     <React.Fragment>
       <h2>Kitty Cat Corner</h2>
         <p>Discussion forum and message board.</p>
-      {Object.values(props.postList).map((post) => {
+      {Object.values(props.postList).sort(function(a,b){
+        return b.upVotes - a.upVotes;}).map((post) => {
         return <Post
           whenPostClicked = {props.onPostSelection}
           title={post.title}
